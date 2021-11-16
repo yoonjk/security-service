@@ -26,10 +26,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.anyRequest().authenticated()
+				.anyRequest().authenticated()   // 모든 요청에 대해, 인증된 사용자만 접근하도록 설정
 			.and()
 			.formLogin()
-			.defaultSuccessUrl("/", true);
+			.loginPage("/login")
+			.permitAll()
+			.defaultSuccessUrl("/", true);      // 로그인 성공 URL을 설정함
 	}
 	
 	@Bean
